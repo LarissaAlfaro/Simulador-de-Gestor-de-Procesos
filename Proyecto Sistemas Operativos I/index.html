@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Simulador de Gestor de Procesos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/FileSaver.js"></script>
+    <script src="./js/Proceso.js"></script>
+    <script src="./js/NodeQ.js"></script>
+    <script src="./js/Queue.js"></script>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <center><b><h1>Simulador de Gestor de Procesos</h1></b></center>
+
+    <div class="container-fuid" id="this-body">
+        <div class="row ">
+
+
+
+            <!---verde-->
+            <div style="height: 500px;" class="col-12">
+                <div class="row">
+                    <div class="col-10" id="listo">
+                        <center>
+                            <h3 id="letras"> LISTO </h3>
+                        </center>
+                        <div class="row">
+                            <div class="col-3 mt-2">
+
+                                <div class="card " style="height: 300px;background-color: #FBE9E7 ; ">
+                                    <center>
+                                        <b><div class="card-header">Nuevo</div></b>
+                                    </center>
+                                    <div class="card-body" id="nuevo">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 mt-2">
+
+                                <div class="card " style="height:  250px; background-color: #E1F5FE;  ">
+                                    <center>
+                                        <b><div class="card-header">Cola 1</div></b>
+                                    </center>
+                                    <div class="card-body" id="listoP1">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 mt-2">
+
+                                <div class="card " style="height:  250px;background-color: #E1F5FE;  ">
+                                    <center>
+                                        <b><div class="card-header">Cola 2</div></b>
+                                    </center>
+                                    <div class="card-body" id="listoP2">
+
+
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 mt-2">
+                                <div class="card" style="height:  250px;background-color: #E1F5FE; ">
+                                    <center>
+                                        <b><div class="card-header">Cola 3</div></b>
+                                    </center>
+                                    <div class="card-body" id="listoP3">
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-2" style=" height: 300px;">
+                        <div class="card mt-5" style="height:  250px; background-color: #E0F2F1 ; width: 230px; ">
+                            <center>
+                                <b><div class="card-header">Ejecutando</div></b>
+                            </center>
+                            <div class="card-body" id="ejecutando">
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style=" height: 200px;">
+                        <div id="salto" class="card" style="background-color: #EDE7F6 ;">
+                            <center>
+                                <b><div class="card-header">Saltos</div></b>
+                            </center>
+                            <div class="card-body">
+                                <center>
+                                    <input type="text" id="stringDeEjecuciones" placeholder="hola aqui estoy" style="visibility: hidden">
+                                    <input type="number" id="noDeSaltos" name="tentacles" style="width: 150px;">
+                                </center>
+                                <center>
+                                    <button type="button" onclick="verificarColas();" id="botonAvanzar" class="btn btn-outline-success" style="margin-top: 15px;">Aceptar</button>
+                                    <button type="button" value="actualizar" onclick=location.reload() class="btn btn-outline-success" style="margin-top: 15px;">Reiniciar</button>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+
+                        <div id="bloqueado1" class="card " style="background-color: #FFFDE7 ;">
+
+                            <center>
+                                <b><div class="card-header">Bloqueado3</div></b>
+                            </center>
+                            <div class="card-body" id="bloqueado3">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="bloqueado2" class="card" style="background-color:#FFFDE7;">
+                            <center>
+                                <b><div class="card-header">Bloqueado5</div></b>
+                            </center>
+                            <div class="card-body" id="bloqueado5">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card " id="terminado" style="background-color: #F9FBE7;">
+                            <center>
+                                <b><div class="card-header">Terminado</div></b>
+                            </center>
+                            <div class="card-body" id="terminado1">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div style=" height: 200px;">
+                        <div id="salto" class="card" style="background-color: #EDE7F6 ; margin-left: 40px;">
+                            <center>
+                                <b><div class="card-header">Archivo Plano</div></b>
+                            </center>
+                            <div class="card-body">
+                                <center>
+                                    <button type="button" id="escribirArchivo" class="btn btn-outline-success" style="margin-top: 15px;">Descargar Archivo</button>
+                                </center>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+                <!--termina verde-->
+
+            </div>
+
+            <!----->
+
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="./js/main.js"></script>
+
+</body>
+
+</html>
